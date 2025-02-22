@@ -18,4 +18,6 @@ jobs:
       run: docker build . -t skris7997/test-docker:latest
     - name: push to DH
       run: |
+        docker login -u skris7997 -p ${{ secrets.DOCKER_HUB_TOKEN }}
         docker push skris7997/test-docker:latest
+        

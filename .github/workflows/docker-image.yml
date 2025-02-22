@@ -28,12 +28,12 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          cd ${{ secrets.PROJECT_FOLDER }}
-          whoami
           docker stop test-docker
           docker remove test-docker
+          cd ${{ secrets.PROJECT_FOLDER }}
+          whoami
           docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/test-docker:latest
-          docker run -d --name test-docker -p 5000:5001 ${{ secrets.DOCKER_HUB_USERNAME }}/test-docker
+          docker run -d --name test-docker -p 5000:5001 test-docker
 
 

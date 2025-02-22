@@ -20,4 +20,20 @@ jobs:
       run: |
         docker login -u skris7997 -p ${{ secrets.DOCKER_HUB_TOKEN }}
         docker push skris7997/test-docker:latest
-        
+    - name: Run command on remote server
+      uses: appleboy/ssh-action@v1.2.0
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd ${{ secrets.PROJECT_FOLDER }}
+          whoami
+          docker stop skris7997/test-docker
+          docker remove test-docker
+          docker login -u skris7997 -p ${{ secrets.DOCKER_HUB_TOKEN }}
+          docker pull skris7997/test-docker:latest
+          docker run -d --name test-docker -p 5001:5000 skris7997/test-docker
+
+

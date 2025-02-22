@@ -13,7 +13,7 @@ def show_user_profile(username):
 
 @app.route('/data')
 def data():
-    return jsonify({'key': 'value3333'})
+    return jsonify({'key': 'value44444'})
 
 if __name__ == '__main__':
     app.run()

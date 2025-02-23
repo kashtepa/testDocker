@@ -34,6 +34,6 @@ jobs:
           whoami
           docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/test-docker:latest
-          docker run -d --name test-docker -p 5000:5001 test-docker
+          docker run -d --name test-docker -p 5011:5000 test-docker
 
 
